@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  // Pages for bottom navigation
   final List<Widget> _pages = [
     const DashboardView(),
     const TodoPage(),
@@ -37,17 +36,21 @@ class _HomePageState extends State<HomePage> {
         index: _selectedIndex,
         children: _pages,
       ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 20),
+      floatingActionButton: SizedBox(
+        height: 65,
+        width: 65,
         child: FloatingActionButton(
           onPressed: () {},
-          backgroundColor: AppColors.primaryBlue,
+          backgroundColor: AppColors.primaryPurple,
           shape: const CircleBorder(),
           elevation: 4,
-          child: const Icon(Icons.add, color: Colors.white, size: 30),
+          child: const Icon(Icons.add, color: Colors.white, size: 32),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // CHANGE HERE: Use the custom location with an offset
+      // Increase 'offsetY' to move it lower. 
+      // 0 = standard docked. 20 = 20 pixels lower.
+      floatingActionButtonLocation: const CenterDockedLowered(offsetY: 20),
       bottomNavigationBar: AppNavbar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
@@ -56,3 +59,18 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+// --- Add this class at the bottom of the file ---
+
+class CenterDockedLowered extends FloatingActionButtonLocation {
+  final double offsetY;
+  const CenterDockedLowered({this.offsetY = 0});
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    // 1. Get the standard "centerDocked" position
+    final Offset offset = FloatingActionButtonLocation.centerDocked.getOffset(scaffoldGeometry);
+    
+    // 2. Add your custom Y-offset to push it downp=
+    return Offset(offset.dx, offset.dy + offsetY);
+  }
+}

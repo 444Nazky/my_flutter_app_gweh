@@ -19,37 +19,52 @@ class _AppNavbarState extends State<AppNavbar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      // CHANGED: Added shape and notch margin
       shape: const CircularNotchedRectangle(),
-      notchMargin: 7.0,
+      notchMargin: 8.0, 
       color: Colors.white,
+      elevation: 0,
+      clipBehavior: Clip.antiAlias, // Ensures the notch curve is smooth
       child: SizedBox(
-        height: 0,
+        height: 70,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            // Left Side
-            _buildNavIcon(Icons.home_rounded, 0),
-            _buildNavIcon(Icons.check_circle_outline, 1),
-            const SizedBox(width: 40), // Spacer for FAB
-            // Right Side
-            _buildNavIcon(Icons.history, 2),
-            _buildNavIcon(Icons.person_outline, 3),
+            _buildNavItem(Icons.home_rounded, 'Home', 0),
+            _buildNavItem(Icons.check_circle_outline, 'To-Do', 1),
+            const SizedBox(width: 60), // Spacer for FAB
+            _buildNavItem(Icons.history, 'History', 2),
+            _buildNavItem(Icons.person_outline, 'Profile', 3),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavIcon(IconData icon, int index) {
+  Widget _buildNavItem(IconData icon, String label, int index) {
     final bool isActive = widget.selectedIndex == index;
-    return IconButton(
-      icon: Icon(
-        icon,
-        color: isActive ? AppColors.primaryBlue : AppColors.textLight,
-        size: 28,
+    return InkWell(
+      onTap: () => widget.onItemTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: isActive ? AppColors.primaryPurple : AppColors.textLight,
+            size: 28,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: isActive ? AppColors.primaryPurple : AppColors.textLight,
+              fontSize: 12,
+              fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
+        ],
       ),
-      onPressed: () => widget.onItemTapped(index),
     );
   }
 }
-
