@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
+import 'package:flutter/services.dart';
+import 'pages/login_page.dart';
+import 'utils/colors.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+  ));
   runApp(const MyApp());
 }
 
@@ -14,12 +20,15 @@ class MyApp extends StatelessWidget {
       title: 'Project Dashboard',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Roboto', 
-        scaffoldBackgroundColor: const Color(0xFFF2F5F9),
-        primaryColor: const Color(0xFF6F3CD7),
         useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.background,
+        fontFamily: 'Roboto', // Default material font
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primaryPurple,
+          primary: AppColors.primaryPurple,
+        ),
       ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
