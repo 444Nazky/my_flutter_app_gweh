@@ -10,16 +10,20 @@ class ProfilePage extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircleAvatar(radius: 50, backgroundImage: NetworkImage('https://i.pravatar.cc/150')),
-            SizedBox(height: 20),
-            Text("User Name", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            Text("user@email.com", style: TextStyle(color: Colors.grey)),
-            SizedBox(height: 30),
-            Icon(Icons.settings, size: 40, color: AppColors.primaryPurple),
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/icon/profile.jpeg'),
+            ),
+            const SizedBox(height: 20),
+            const Text("User Name", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const Text("user@email.com", style: TextStyle(color: Colors.grey)),
+            const SizedBox(height: 30),
+            const Icon(Icons.settings, size: 40, color: AppColors.primaryPurple),
           ],
         ),
       ),
     );
   }
 }
+
