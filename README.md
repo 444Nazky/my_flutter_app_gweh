@@ -1,16 +1,14 @@
 # my_flutter_app_gweh
 
-A new Flutter project.
+lib/
+├── main.dart                  # Entry point (Routes to Login)
+├── utils/
+│   └── colors.dart            # Shared colors
+└── pages/
+    ├── login_page.dart        # Initial login screen
+    ├── home_page.dart         # Main Dashboard (contains the Image UI)
+    ├── todo_page.dart         # To-Do Tab content
+    ├── history_page.dart      # History Tab content
+    └── profile_page.dart      # Profile Tab content
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## yes king
