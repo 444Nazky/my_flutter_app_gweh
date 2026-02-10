@@ -21,5 +21,7 @@ lib/
 
 ### 2026-XX-XX
 - Reduced FAB (Floating Action Button) margin from 70 to 10 from bottom navigation bar
+- Fixed duplicate dependencies in pubspec.yaml
+- Added flutter_slidable package for swipe-to-delete functionality
 
 ## yes king
