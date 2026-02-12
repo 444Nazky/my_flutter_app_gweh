@@ -4,6 +4,7 @@ import '../widgets/dashboard_view.dart';
 import '../widgets/navbar.dart';
 import 'history_page.dart';
 import 'profile_page.dart';
+import 'submit_report_page.dart';
 import 'todo_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +41,21 @@ class _HomePageState extends State<HomePage> {
         height: 65,
         width: 65,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) => Container(
+                height: MediaQuery.of(context).size.height * 0.92,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF5F6FA),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                child: const SubmitReportPage(),
+              ),
+            );
+          },
           backgroundColor: AppColors.primaryPurple,
           shape: const CircleBorder(),
           elevation: 4,

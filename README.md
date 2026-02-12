@@ -6,9 +6,10 @@ A modern Flutter task management application with a clean UI and intuitive navig
 
 - **Dashboard View** - Overview of ongoing projects and tasks with progress tracking
 - **Task Management** - Create, view, and manage pending and completed tasks
+- **Submit Report** - Create new reports with title, category, description, and image upload
 - **Swipe-to-Delete** - Swipe actions to delete tasks from the dashboard
 - **Bottom Navigation** - Easy navigation between Dashboard, To-Do, History, and Profile
-- **Custom FAB** - Floating action button with custom positioning
+- **Custom FAB** - Floating action button with custom positioning and slide-up animation
 
 ## 🏗️ Project Structure
 
@@ -20,6 +21,7 @@ lib/
 ├── pages/
 │   ├── login_page.dart        # Login screen
 │   ├── home_page.dart         # Main dashboard with navigation
+│   ├── submit_report_page.dart # Submit new report form
 │   ├── todo_page.dart         # To-Do list management
 │   ├── history_page.dart      # Task history view
 │   └── profile_page.dart      # User profile screen
@@ -47,6 +49,7 @@ lib/
 ### Dependencies
 
 - `flutter_slidable` ^3.1.0 - For swipe-to-delete functionality
+- `image_picker` ^1.1.2 - For uploading images from camera/gallery
 - `flutter_lints` ^6.0.0 - Linting rules
 
 ## 🎨 Design System
@@ -54,6 +57,7 @@ lib/
 - **Primary Color**: Purple (#6B4EFF)
 - **Text Colors**: Dark (#1A1A1A), Light (#6B6B6B)
 - **Default Padding**: 24px
+- **Border Radius**: 16-20px for rounded UI elements
 
 ## 🗄️ Database Recommendation
 
@@ -89,9 +93,13 @@ tasks/{taskId}
 ## 📝 Changelog
 
 ### 2026-XX-XX
+- Added Submit Report page with form fields (title, category, description)
+- Added image upload functionality with camera/gallery picker
+- Implemented slide-up animation when opening Submit Report page
 - Reduced FAB (Floating Action Button) offsetY from default to 20
 - Fixed duplicate dependencies in pubspec.yaml
 - Added flutter_slidable package for swipe-to-delete functionality
+- Added image_picker package for photo uploads
 - Implemented custom CenterDockedLowered FAB location
 
 ## 📄 License
