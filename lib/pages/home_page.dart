@@ -14,8 +14,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
+  
+  late AnimationController _fabController;
+  late Animation<double> _fabScaleAnimation;
 
   final List<Widget> _pages = [
     const DashboardView(),
@@ -23,6 +26,31 @@ class _HomePageState extends State<HomePage> {
     const HistoryPage(),
     const ProfilePage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    
+    // FAB animation controller
+    _fabController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    _fabScaleAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _fabController, curve: Curves.elasticOut),
+    );
+    
+    // Start FAB animation after a delay
+    Future.delayed(const Duration(milliseconds: 800), () {
+      _fabController.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _fabController.dispose();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -37,9 +65,8 @@ class _HomePageState extends State<HomePage> {
         index: _selectedIndex,
         children: _pages,
       ),
-      floatingActionButton: SizedBox(
-        height: 65,
-        width: 65,
+      floatingActionButton: ScaleTransition(
+        scale: _fabScaleAnimation,
         child: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(

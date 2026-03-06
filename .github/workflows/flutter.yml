@@ -1,0 +1,36 @@
+name: Flutter
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Clone Flutter repo
+      run: git clone https://github.com/flutter/flutter.git --depth 1 -b stable "$FLUTTER_HOME"
+    
+    - name: Add Flutter to PATH
+      run: echo "$FLUTTER_HOME/bin" >> $GITHUB_PATH
+    
+    - name: Flutter doctor
+      run: flutter doctor
+    
+    - name: Get dependencies
+      run: flutter pub get
+    
+    - name: Build web
+      run: flutter build web --release
+    
+    - name: Upload web build
+      uses: actions/upload-artifact@v4
+      with:
+        name: web-build
+        path: build/web/
+

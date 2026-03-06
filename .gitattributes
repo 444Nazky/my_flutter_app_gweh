@@ -1,0 +1,18 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# Force the following binary files to always be treated as binary
+# to prevent automatic CRLF/LF conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.jar binary
+*.class binary
+
+# Flutter/Dart files
+*.dart linguist-language=Dart
+*.yaml linguist-language=Dart
+*.yml linguist-language=Dart
+
