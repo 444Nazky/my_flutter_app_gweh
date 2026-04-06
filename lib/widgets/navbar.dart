@@ -19,7 +19,7 @@ class _AppNavbarState extends State<AppNavbar> {
   
   Matrix4 _getNavTransform(bool isActive) {
     if (isActive) {
-      return Matrix4.identity()..translate(0, -4);
+      return Matrix4.translationValues(0, -4, 0);
     }
     return Matrix4.identity();
   }

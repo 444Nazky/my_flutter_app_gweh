@@ -113,7 +113,7 @@ class _DashboardViewState extends State<DashboardView> with TickerProviderStateM
 
   Matrix4 _getChipTransform(bool isActive) {
     if (isActive) {
-      return Matrix4.identity()..scale(1.05);
+      return Matrix4.diagonal3Values(1.05, 1.05, 1.0);
     }
     return Matrix4.identity();
   }
@@ -501,25 +501,29 @@ class _AnimatedProjectCard extends StatelessWidget {
           const Spacer(),
           const Text("Progress", style: TextStyle(color: Colors.white70)),
           const SizedBox(height: 8),
-          Stack(
-            children: [
-              Container(
-                height: 6,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              Container(
-                height: 6,
-                width: double.infinity * progress,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Stack(
+                children: [
+                  Container(
+                    height: 6,
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  Container(
+                    height: 6,
+                    width: constraints.maxWidth * progress.clamp(0.0, 1.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+              );
+            }
           )
         ],
       ),
@@ -579,25 +583,29 @@ class ProjectCardWidget extends StatelessWidget {
           const Spacer(),
           const Text("Progress", style: TextStyle(color: Colors.white70)),
           const SizedBox(height: 8),
-          Stack(
-            children: [
-              Container(
-                height: 6,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              Container(
-                height: 6,
-                width: double.infinity * progress,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Stack(
+                children: [
+                  Container(
+                    height: 6,
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  Container(
+                    height: 6,
+                    width: constraints.maxWidth * progress.clamp(0.0, 1.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+              );
+            }
           )
         ],
       ),
