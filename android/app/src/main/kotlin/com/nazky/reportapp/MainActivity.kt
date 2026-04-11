@@ -1,4 +1,4 @@
-package com.example.my_flutter_app_gweh
+package com.nazky.reportapp
 
 import io.flutter.embedding.android.FlutterActivity
 
